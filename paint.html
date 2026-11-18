@@ -1,0 +1,155 @@
+<!DOCTYPE html> <html lang="pt-BR"> <head> <meta charset="UTF-8"> <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Meu Joguinho</title>
+
+<style>
+    body {
+        margin: 0;
+        font-family: Arial, Helvetica, sans-serif;
+        background: #f0f0f0;
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        min-height: 100vh;
+    }
+
+    h1 {
+        color: #333;
+    }
+
+    canvas {
+        width: 600px;
+        height: 400px;
+        background-color: white;
+        border: 2px solid #333;
+        cursor: crosshair;
+    }
+
+    .botoes {
+        display: flex;
+        gap: 10px;
+        margin-top: 15px;
+    }
+
+    button {
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        color: white;
+        font-size: 16px;
+        cursor: pointer;
+    }
+
+    #vermelho {
+        background: red;
+    }
+
+    #azul {
+        background: blue;
+    }
+
+    #verde {
+        background: yellow;
+    }
+
+    #limpar {
+        background: #333;
+    }
+
+    button:hover {
+        opacity: 0.8;
+    }
+</style>
+
+</head> <body>
+<h1>Meu jogo de pintar</h1>
+
+<canvas id="canvas" width="600" height="400"></canvas>
+
+<div class="botoes">
+    <button id="vermelho">Vermelho</button>
+    <button id="azul">Azul</button>
+    <button id="verde">amarelo</button>
+    <button id="limpar">Limpar</button>
+</div>
+
+<script>
+    const canvas = document.getElementById("canvas");
+    const ctx = canvas.getContext("2d");
+
+    const raio = 5;
+
+    // Cor inicial
+    let cor = "red";
+
+    let desenhando = false;
+
+    canvas.addEventListener("mousedown", function(event) {
+        desenhando = true;
+        desenhar(event);
+    });
+
+    canvas.addEventListener("mousemove", function(event) {
+        if (desenhando) {
+            desenhar(event);
+        }
+    });
+
+    canvas.addEventListener("mouseup", function() {
+        desenhando = false;
+    });
+
+    canvas.addEventListener("mouseleave", function() {
+        desenhando = false;
+    });
+
+    function desenhar(event) {
+        const rect = canvas.getBoundingClientRect();
+
+        const x = event.clientX - rect.left;
+        const y = event.clientY - rect.top;
+
+        ctx.beginPath();
+
+        ctx.arc(
+            x,
+            y,
+            raio,
+            0,
+            Math.PI * 2
+        );
+
+        ctx.fillStyle = cor;
+        ctx.fill();
+
+        ctx.closePath();
+    }
+
+    // Selecionar vermelho
+    document.getElementById("vermelho").addEventListener("click", function() {
+        cor = "red";
+    });
+
+    // Selecionar azul
+    document.getElementById("azul").addEventListener("click", function() {
+        cor = "blue";
+    });
+
+    // Selecionar verde
+    document.getElementById("verde").addEventListener("click", function() {
+        cor = "yellow";
+    });
+
+    // Limpar o desenho
+    document.getElementById("limpar").addEventListener("click", function() {
+        ctx.clearRect(
+            0,
+            0,
+            canvas.width,
+            canvas.height
+        );
+    });
+</script>
+
+</body> </html>
