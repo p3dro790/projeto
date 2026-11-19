@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jogo do Labirinto</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #090d1b;
+            color: white;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 20px;
+        }
+
+        h1 {
+            color: #a78bfa;
+            margin-bottom: 10px;
+        }
+
+        p {
+            color: #aaa;
+        }
+
+        #jogo {
+            display: grid;
+            grid-template-columns: repeat(10, 35px);
+            gap: 2px;
+            justify-content: center;
+            margin: 25px auto;
+        }
+
+        .celula {
+            width: 35px;
+            height: 35px;
+            background: #151b2d;
+            border-radius: 4px;
+        }
+
+        .parede {
+            background: #7047ff;
+        }
+
+        .chegada {
+            background: #16c784;
+        }
+
+        .jogador {
+            background: #ff405c;
+            border-radius: 50%;
+            border: 5px solid white;
+        }
+
+        button {
+            background: #7047ff;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background: #a855f7;
+        }
+
+        #mensagem {
+            color: #16c784;
+            font-size: 20px;
+            font-weight: bold;
+            margin-top: 15px;
+        }
+
+        @media(max-width: 400px) {
+            #jogo {
+                grid-template-columns: repeat(10, 28px);
+            }
+
+            .celula {
+                width: 28px;
+                height: 28px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>🧩 LABIRINTO</h1>
+
+    <p>Use as setas do teclado para chegar ao destino verde!</p>
+
+    <p>Movimentos: <span id="contador">0</span></p>
+
+    <div id="jogo"></div>
+
+    <div id="mensagem"></div>
+
+    <button onclick="reiniciar()">RECOMEÇAR</button>
+
+    <script>
+
+        const mapaOriginal = [
+            [1,1,0,1,1,1,1,1,1,1],
+            [1,0,0,0,1,0,0,0,0,1],
+            [1,1,1,0,1,0,1,1,0,1],
+            [1,0,0,0,0,0,0,1,0,1],
+            [1,0,1,1,1,1,0,1,0,1],
+            [1,0,1,0,0,0,0,1,0,1],
+            [1,0,0,1,1,1,1,1,0,1],
+            [1,0,0,0,0,0,0,0,2,1],
+            [1,1,1,1,1,1,1,1,1,1]
+        ];
+
+        let x = 1;
+        let y = 1;
+        let movimentos = 0;
+        let venceu = false;
+
+        const jogo = document.getElementById("jogo");
+        const contador = document.getElementById("contador");
+        const mensagem = document.getElementById("mensagem");
+
+        function desenhar() {
+
+            jogo.innerHTML = "";
+
+            mapaOriginal.forEach((linha, linhaY) => {
+
+                linha.forEach((tipo, colunaX) => {
+
+                    const celula = document.createElement("div");
+
+                    celula.className = "celula";
+
+                    if (tipo === 1) {
+                        celula.classList.add("parede");
+                    }
+
+                    if (tipo === 2) {
+                        celula.classList.add("chegada");
+                    }
+
+                    if (x === colunaX && y === linhaY) {
+                        celula.className = "celula jogador";
+                    }
+
+                    jogo.appendChild(celula);
+
+                });
+
+            });
+
+            contador.textContent = movimentos;
+        }
+
+        document.addEventListener("keydown", function(e) {
+
+            if (venceu) return;
+
+            let nx = x;
+            let ny = y;
+
+            if (e.key === "ArrowUp") ny--;
+            else if (e.key === "ArrowDown") ny++;
+            else if (e.key === "ArrowLeft") nx--;
+            else if (e.key === "ArrowRight") nx++;
+            else return;
+
+            e.preventDefault();
+
+            if (
+                mapaOriginal[ny] &&
+                mapaOriginal[ny][nx] !== undefined &&
+                mapaOriginal[ny][nx] !== 1
+            ) {
+
+                x = nx;
+                y = ny;
+                movimentos++;
+
+                desenhar();
+
+                if (mapaOriginal[y][x] === 2) {
+
+                    venceu = true;
+
+                    mensagem.textContent =
+                        "🎉 PARABÉNS! VOCÊ VENCEU!";
+
+                }
+
+            }
+
+        });
+
+        function reiniciar() {
+
+            x = 1;
+            y = 1;
+            movimentos = 0;
+            venceu = false;
+
+            mensagem.textContent = "";
+
+            desenhar();
+
+        }
+
+        desenhar();
+
+    </script>
+
+</body>
+</html>
