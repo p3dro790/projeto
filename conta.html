@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Joguinho simples</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+            background-color: rebeccapurple;
+            color: white;
+        }
+
+        input {
+            padding: 8px;
+            font-size: 16px;
+            width: 100px;
+            text-align: center;
+        }
+
+        button {
+            padding: 8px 15px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .mensagem {
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Adivinhe o Número</h1>
+    <p>Tente adivinhar o número de 1 a 50!</p>
+
+    <input type="number" id="palpite" min="1" max="50">
+    <button onclick="tentar()">Chutar</button>
+
+    <div class="mensagem" id="resultado"></div>
+
+    <script>
+        let numeroSecreto = Math.floor(Math.random() * 50) + 1;
+        let tentativas = 3;
+
+        function tentar() {
+            const chute = Number(document.getElementById('palpite').value);
+            const resultado = document.getElementById('resultado');
+
+            // Verifica se o número é válido
+            if (!chute || chute < 1 || chute > 50) {
+                resultado.style.color = 'yellow';
+                resultado.innerText = 'Digite um número entre 1 e 50!';
+                return;
+            }
+
+            tentativas--;
+
+            // Acertou
+            if (chute === numeroSecreto) {
+                resultado.style.color = 'pink';
+                resultado.innerText = 'Parabéns! Você ganhou! 🎉';
+
+                setTimeout(reiniciar, 3000);
+            }
+
+            // Perdeu
+            else if (tentativas === 0) {
+                resultado.style.color = 'red';
+                resultado.innerText =
+                    `Você perdeu! O número certo era ${numeroSecreto}.`;
+
+                setTimeout(reiniciar, 3000);
+            }
+
+            // Chute menor
+            else if (chute < numeroSecreto) {
+                resultado.style.color = 'lightblue';
+                resultado.innerText =
+                    `Errou! O número secreto é maior. Tentativas restantes: ${tentativas}`;
+            }
+
+            // Chute maior
+            else {
+                resultado.style.color = 'orange';
+                resultado.innerText =
+                    `Errou! O número secreto é menor. Tentativas restantes: ${tentativas}`;
+            }
+        }
+
+        function reiniciar() {
+            numeroSecreto = Math.floor(Math.random() * 50) + 1;
+            tentativas = 3;
+
+            document.getElementById('palpite').value = '';
+            document.getElementById('resultado').innerText = '';
+        }
+    </script>
+
+</body>
+</html>
