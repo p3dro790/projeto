@@ -2,20 +2,24 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width,inicial-scale=1.0">
-    <title>Game Hub-Meu Jogos Favoritos</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>GamesFCC - Meus Jogos Favoritos</title>
+
     <style>
-        *{
+        * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
+
         body {
-            font-family: Arial,sans-serif;
+            font-family: Arial, sans-serif;
             background: #090d1b;
             color: white;
             min-height: 100vh;
         }
+
         header {
             display: flex;
             justify-content: space-between;
@@ -23,45 +27,55 @@
             padding: 25px 8%;
             border-bottom: 1px solid #252941;
         }
+
         .logo {
             font-size: 28px;
             font-weight: bold;
             color: #a78bfa;
             letter-spacing: 2px;
         }
+
         .logo span {
             color: white;
         }
+
         .menu {
             color: #aaa;
             font-size: 14px;
         }
+
         .hero {
             text-align: center;
             padding: 75px 20px 50px;
         }
+
         .hero h1 {
-            font-size: clamp(32px,5vw,55px);
+            font-size: clamp(32px, 5vw, 55px);
             margin-bottom: 15px;
             text-transform: uppercase;
         }
+
         .hero h1 span {
             color: #a78bfa;
         }
+
         .hero p {
             color: #999fb5;
             font-size: 16px;
         }
+
         .container {
             max-width: 1150px;
             margin: auto;
             padding: 20px;
         }
+
         .games {
             display: grid;
-            grid-template-columns: repeat(3,fr);
+            grid-template-columns: repeat(3, 1fr);
             gap: 25px;
         }
+
         .game-card {
             background: #151b2d;
             border: 1px solid #292f49;
@@ -70,11 +84,13 @@
             text-align: center;
             transition: 0.3s;
         }
-        .game-card:hover{
+
+        .game-card:hover {
             transform: translateY(-8px);
             border-color: #9672ff;
             box-shadow: 0 10px 35px #7047ff35;
         }
+
         .game-image {
             height: 150px;
             border-radius: 12px;
@@ -83,125 +99,130 @@
             justify-content: center;
             font-size: 65px;
             margin-bottom: 20px;
-            background:linear-gradient(135deg,#7047ff,#252d70);
+            background: linear-gradient(135deg, #7047ff, #252d70);
         }
+
         .game-card h2 {
             font-size: 21px;
             margin-bottom: 10px;
         }
+
         .game-card p {
             color: #999fb5;
             font-size: 13px;
             margin-bottom: 20px;
         }
+
         .btn {
-            display:block;
-            text-decoration:none;
-            background:linear-grandient(90deg,#7047ff,#a855f7);
-            
-            color:white;
+            display: block;
+            text-decoration: none;
+            background: linear-gradient(90deg, #7047ff, #a855f7);
+            color: white;
             padding: 13px;
-            border-radius:9px;
-            font-weight:bold;
-            transition:0.3s;
+            border-radius: 9px;
+            font-weight: bold;
+            transition: 0.3s;
         }
 
-        .btn:hover{
-            filter:brightness(1.2);
-            box-shadow:0 0 20px #a855f780;
+        .btn:hover {
+            filter: brightness(1.2);
+            box-shadow: 0 0 20px #a855f780;
         }
 
         footer {
-    text-align: center;
-    padding: 45px 15px;
-    color: #626982;
-    font-size: 13px;
-}
+            text-align: center;
+            padding: 45px 15px;
+            color: #626982;
+            font-size: 13px;
+        }
 
-        @media (max-width:800px) {
+        @media (max-width: 800px) {
             .games {
-                grid-template-columns:repeat(2,1fr);
-
+                grid-template-columns: repeat(2, 1fr);
             }
         }
 
-        @media (max-width:500px) {
+        @media (max-width: 500px) {
             .games {
-                grid-template-columns:1fr;
+                grid-template-columns: 1fr;
             }
-      header{
-        padding:20px;
-       }
-     }
 
+            header {
+                padding: 20px;
+            }
+
+            .menu {
+                font-size: 11px;
+            }
+        }
     </style>
 </head>
 
-     <body>
+<body>
 
     <header>
-    <div class="logo">GAMES<span>FCC</span></div>
-    <div class="menu">DIVERTIMENTO TOTAl</div>
-
+        <div class="logo">GAMES<span>FCC</span></div>
+        <div class="menu">DIVERTIMENTO TOTAL</div>
     </header>
 
     <section class="hero">
         <h1>SUA CENTRAL DE <span>JOGOS</span></h1>
-        <p>seu jogo favorito e comece a 
-        diversão</p>
-
+        <p>Escolha seu jogo favorito e comece a diversão!</p>
     </section>
 
     <main class="container">
+
         <div class="games">
 
-            <div class="game-card"
-            <div class="game-image"></div>
-            <h2>jogo 01</h2>
-             
-            <p> Prepare-se para a aventual!</p>
-            <a href="jogo1.html" class="btn"> &rarr; JOGAR AGORA</a>
+            <div class="game-card">
+                <div class="game-image">🎮</div>
+                <h2>Jogo 01</h2>
+                <p>Prepare-se para a aventura!</p>
+                <a href="PROJETO PEDRO.html" class="btn">➜ JOGAR AGORA</a>
+            </div>
+
+            <div class="game-card">
+                <div class="game-image">🎨</div>
+                <h2>Jogo de Pintar</h2>
+                <p>Uma nova experiência espera por você!</p>
+                <a href="paint.html" class="btn">➜ JOGAR AGORA</a>
+            </div>
+
+            <div class="game-card">
+                <div class="game-image">⭕</div>
+                <h2>Jogo da Velha</h2>
+                <p>Teste suas habilidades!</p>
+                <a href="jogo da velha.html" class="btn">➜ JOGAR AGORA</a>
+            </div>
+
+            <div class="game-card">
+                <div class="game-image">🧱</div>
+                <h2>Pega Bloco</h2>
+                <p>Mostre que você é o melhor!</p>
+                <a href="pega bloco.html" class="btn">➜ JOGAR AGORA</a>
+            </div>
+
+            <div class="game-card">
+                <div class="game-image">🏆</div>
+                <h2>Jogo 05</h2>
+                <p>Desafie seus próprios limites!</p>
+                <a href="jogo5.html" class="btn">➜ JOGAR AGORA</a>
+            </div>
+
+            <div class="game-card">
+                <div class="game-image">🔢</div>
+                <h2>Adivinhe o Número</h2>
+                <p>A diversão nunca termina!</p>
+                <a href="adivenhe o numero.html" class="btn">➜ JOGAR AGORA</a>
+            </div>
 
         </div>
 
-        <div class="game-card">
-        <div class="game-image"></div>
-        <h2>Jogo de pintar</h2>
-        <p>Uma nova experiencia espera por voce!</p>
-        <a href="paint.html"class="btn">&rarr; JOGAR AGORA</a>
-        </div>
-
-        <div class="game-card">
-            <div class="game-image"></div>
-            <h2>Jogo da Velha</h2>
-            <p>Teste suas habilidades!</p>
-            <a href="jogo da velha.html" class="btn"> &rarr; JOGAR AGORA</a>
-            
-        </div>
-        
-        <div class="game-card">
-            div class="game-image"></div>
-            <h2>jogo 04</h2>
-            <p>Mostre que é voce o melhor!</p>
-            <a href="pega bloco.html" class="btn"> &rarr; JOGAR AGORA</a>
-
-        </div>
-        <div class="game-card"
-        <div class="game-image"></div>
-<h2>jogo 05</h2>
-  <p>Desafie seus próprios limites!</p>
-  <a href="jogo5.html" class="ntn"> &rarr; JOGAR AGORA</a>
-    </div>
-    <div class="game-card">
-        <div class="game-image"></div>
-        <h2>jogo6</h2>
-        <p>A diversão nunca termina!</p>
-        <a href="adivenhe o numero.html" class="btn"> &rarr; JOGAR AGORA</a>
-    </div>
-</div>
     </main>
-<footer>
-     &copy; 2026 GAME HUB-CRIADO POR PEDRO E YURI
-</footer>
-     </body>
+
+    <footer>
+        &copy; 2026 GAME HUB - CRIADO POR PEDRO E YURI
+    </footer>
+
+</body>
 </html>
